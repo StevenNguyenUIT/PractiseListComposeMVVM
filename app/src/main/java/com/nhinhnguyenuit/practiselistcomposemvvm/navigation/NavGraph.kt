@@ -14,17 +14,20 @@ import com.nhinhnguyenuit.practiselistcomposemvvm.ui.viewmodel.ListRestaurantVie
 @Composable
 fun NavGraph(
     navController: NavHostController,
-    viewModel: ListRestaurantViewModel
 ) {
     NavHost(navController = navController, startDestination = SCREEN.listScreen.route) {
-        composable(SCREEN.listScreen.route){
-           ListRestaurantScreen(viewModel = viewModel, navController = navController)
+        composable(SCREEN.listScreen.route) {
+            ListRestaurantScreen(
+                navController = navController,
+                onItemClick = { navController.navigate("itemdetail/${it}") }
+            )
         }
-        composable(SCREEN.detailScreen.route,
-            arguments = listOf(navArgument("itemId"){type = NavType.IntType})
-        ){ backStackEntry ->
-            val id = backStackEntry.arguments?.getInt("itemId")?:0
-            ItemDetailScreen(id = id, viewModel = viewModel)
+        composable(
+            SCREEN.detailScreen.route,
+            arguments = listOf(navArgument("itemId") { type = NavType.IntType })
+        ) { backStackEntry ->
+            val id = backStackEntry.arguments?.getInt("itemId") ?: 0
+            ItemDetailScreen(id = id)
         }
     }
 }

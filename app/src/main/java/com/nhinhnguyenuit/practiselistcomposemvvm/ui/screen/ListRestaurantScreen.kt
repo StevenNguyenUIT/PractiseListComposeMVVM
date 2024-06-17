@@ -16,6 +16,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavHostController
 import com.nhinhnguyenuit.practiselistcomposemvvm.data.model.Restaurant
@@ -26,7 +27,8 @@ import com.nhinhnguyenuit.practiselistcomposemvvm.ui.viewmodel.ListRestaurantVie
 @Composable
 fun ListRestaurantScreen(
     navController: NavHostController,
-    viewModel: ListRestaurantViewModel
+    onItemClick: (Int) -> Unit,
+    viewModel: ListRestaurantViewModel = hiltViewModel()
 ){
     val restaurants by viewModel.restaurants.collectAsState()
 
@@ -34,7 +36,7 @@ fun ListRestaurantScreen(
         modifier = Modifier.padding(0.dp)
     ) {
         items(restaurants){ res ->
-            RestaurantItem(res, onItemClick = {navController.navigate("itemdetail/${it}")})
+            RestaurantItem(res, onItemClick = {onItemClick(it)})
         }
     }
 }

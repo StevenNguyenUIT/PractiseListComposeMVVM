@@ -5,12 +5,16 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.nhinhnguyenuit.practiselistcomposemvvm.data.model.Restaurant
 import com.nhinhnguyenuit.practiselistcomposemvvm.data.repository.RestaurantRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class ListRestaurantViewModel: ViewModel() {
-    private val repository = RestaurantRepository()
+@HiltViewModel
+class ListRestaurantViewModel @Inject constructor(
+    private val repository: RestaurantRepository
+): ViewModel() {
     private val _restaurants = MutableStateFlow<List<Restaurant>>(emptyList())
     val restaurants : StateFlow<List<Restaurant>> = _restaurants
 

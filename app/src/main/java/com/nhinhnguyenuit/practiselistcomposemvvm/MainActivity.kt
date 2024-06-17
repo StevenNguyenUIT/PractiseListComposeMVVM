@@ -19,8 +19,9 @@ import com.nhinhnguyenuit.practiselistcomposemvvm.navigation.NavGraph
 import com.nhinhnguyenuit.practiselistcomposemvvm.ui.screen.ListRestaurantScreen
 import com.nhinhnguyenuit.practiselistcomposemvvm.ui.theme.PractiseListComposeMVVMTheme
 import com.nhinhnguyenuit.practiselistcomposemvvm.ui.viewmodel.ListRestaurantViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,9 +34,8 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun MainScreen() {
-    val viewModel: ListRestaurantViewModel = viewModel()
     val navController  = rememberNavController()
-    NavGraph(viewModel = viewModel, navController = navController)
+    NavGraph(navController = navController)
 }
 
 @Preview(showBackground = true)
