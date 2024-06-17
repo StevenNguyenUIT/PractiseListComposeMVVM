@@ -1,10 +1,18 @@
 package com.nhinhnguyenuit.practiselistcomposemvvm.data.repository
 
+import android.content.Context
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import com.nhinhnguyenuit.practiselistcomposemvvm.data.model.Restaurant
 import com.nhinhnguyenuit.practiselistcomposemvvm.data.remote.ApiService
 import com.nhinhnguyenuit.practiselistcomposemvvm.data.remote.RetrofitInstance
+import java.io.InputStreamReader
+import java.io.Reader
+import javax.inject.Inject
 
-class RestaurantRepository : ApiService {
+class RestaurantRepository @Inject constructor(
+    private val context: Context
+) : ApiService {
     override suspend fun getRestaurants(): List<Restaurant> {
         return RetrofitInstance.Api.getRestaurants()
     }
@@ -23,4 +31,13 @@ class RestaurantRepository : ApiService {
             Restaurant(11,"faaa", "fsdf adssdf dfdb dfd fd"),
         )
     }
+    suspend fun getRestaurantsJson(): List<Restaurant>{
+        val inputStream = context.resources.openRawResource(
+            com.nhinhnguyenuit.practiselistcomposemvvm.R.raw.itemlist
+        )
+        val reader = InputStreamReader(inputStream)
+        val itemType = object : TypeToken<List<Restaurant>>() {}.type
+        return Gson().fromJson(reader, itemType)
+    }
+
 }

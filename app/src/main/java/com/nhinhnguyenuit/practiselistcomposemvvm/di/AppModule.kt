@@ -1,9 +1,11 @@
 package com.nhinhnguyenuit.practiselistcomposemvvm.di
 
+import android.content.Context
 import com.nhinhnguyenuit.practiselistcomposemvvm.data.repository.RestaurantRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
@@ -13,7 +15,7 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideRepository() : RestaurantRepository{
-        return RestaurantRepository()
+    fun provideRepository(@ApplicationContext context: Context) : RestaurantRepository{
+        return RestaurantRepository(context)
     }
 }
