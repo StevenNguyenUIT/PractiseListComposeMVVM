@@ -3,6 +3,7 @@ package com.nhinhnguyenuit.practiselistcomposemvvm.ui.screen
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -15,6 +16,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.paint
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.ViewModel
@@ -45,7 +48,9 @@ fun ListRestaurantScreen(
 @Composable
 fun RestaurantItem(res: Restaurant, onItemClick: (Int) -> Unit) {
     Card(onClick = { onItemClick(res.id) },
-        modifier = Modifier.padding(20.dp)
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(20.dp)
         ) {
         Column(
             modifier = Modifier.padding(20.dp)

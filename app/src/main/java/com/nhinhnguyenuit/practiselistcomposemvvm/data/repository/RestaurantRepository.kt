@@ -8,4 +8,19 @@ class RestaurantRepository : ApiService {
     override suspend fun getRestaurants(): List<Restaurant> {
         return RetrofitInstance.Api.getRestaurants()
     }
+    suspend fun getRestaurantsLocalLists(): List<Restaurant>{
+        return listOf(
+            Restaurant(1,"Aaaa", "abasdfsdfsdfsdf adssdf dfdb dfd fd"),
+            Restaurant(2,"baaa", "dfsdfsdfsdf adssdf dfdb dfd fd"),
+            Restaurant(3,"caaa", "fsdfsdfsdf adssdf dfdb dfd fd"),
+            Restaurant(4,"daaa", "sdfsdfsdf adssdf dfdb dfd fd"),
+            Restaurant(5,"eaaa", "fsdf adssdf dfdb dfd fd"),
+            Restaurant(6,"faaa", "fsfsdf adssdf dfdb dfd fd"),
+            Restaurant(7,"faaa", "dfsdfsdf adssdf dfdb dfd fd"),
+            Restaurant(8,"faaa", "fsdfsdf adssdf dfdb dfd fd"),
+            Restaurant(8,"faaa", "dfsdf adssdf dfdb dfd fd"),
+            Restaurant(10,"faaa", "sdfsdf adssdf dfdb dfd fd"),
+            Restaurant(11,"faaa", "fsdf adssdf dfdb dfd fd"),
+        )
+    }
 }

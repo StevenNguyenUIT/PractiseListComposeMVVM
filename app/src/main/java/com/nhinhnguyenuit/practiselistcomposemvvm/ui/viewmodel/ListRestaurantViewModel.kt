@@ -20,7 +20,7 @@ class ListRestaurantViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            val restaurants = repository.getRestaurants()
+            val restaurants = repository.getRestaurantsLocalLists()
             Log.d("nhinhng","list: $restaurants")
             _restaurants.value = restaurants
         }
