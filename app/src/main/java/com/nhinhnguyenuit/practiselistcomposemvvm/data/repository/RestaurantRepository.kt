@@ -40,4 +40,9 @@ class RestaurantRepository @Inject constructor(
         return Gson().fromJson(reader, itemType)
     }
 
+    suspend fun getRestaurantsJson2(): List<Restaurant>{
+        val jsonString = context.assets.open("itemlist.json").bufferedReader().use { it.readText()}
+        return Gson().fromJson(jsonString, Array<Restaurant>::class.java).toList()
+    }
+
 }
